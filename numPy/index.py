@@ -1,5 +1,8 @@
 import numpy as np
 from numpy.core.fromnumeric import shape
 
-data = np.array([1,2,3], dtype=np.float64)
-print(data)
+Student = np.dtype([('name', 'S20'), ('age', 'i1'), ('marks', 'f4')])
+data = np.array([('rolf', 21, 75),
+                  ('anna', 19, 65),
+                  ('ethan', 18, 75)], dtype=Student)
+print(type(data['age']))
