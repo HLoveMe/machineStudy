@@ -37,9 +37,13 @@
     np.array([1,2,3,4])
     np.array([[1,2],[1,3],[1,4]])
     np.array([(1,2,3),(1.1,2,3)])
+    
+    np.zeros
+    np.arange
     ```
 
     ```python
+    dtype:
     np.array([22,12],dtype=complex) 复数
     np.array([1.0,2.3.0],dtype=np.float64)
     # dtype
