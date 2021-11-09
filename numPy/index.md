@@ -33,12 +33,54 @@
 
     ```python
     import numpy as np
+    # array
     np.array(13)
     np.array([1,2,3,4])
     np.array([[1,2],[1,3],[1,4]])
     np.array([(1,2,3),(1.1,2,3)])
+    
+    # empty(shape,dtype,order) 创建一个指定shape 的数组 值为随机值
+    # empty_like(ndarray,dtype,order) 创建一个和指定数组相同shape的空数组
+    	np.empty((2,3),dtype=np.float64)
+    # zeros(shape, dtype = float, order = 'C') 创建指定shape的数组 值为0
+    # zeros_like(ndarray,dtype,order) 创建一个和指定数组相同shape的0数组
+    # ones(shape, dtype = float, order = 'C') 创建指定shape的数组 值为1
+    # ones_like(ndarray,dtype,order) 创建一个和指定数组相同shape的1数组
+    	np.zeros((19,),dtype=np.int8)	
+    # asarray(a, dtype = None, order = None) a 任意形式的输入参数，比如列表、列表的元组、元组、元组的元组、元组的列表
+    	np.asarray(((1,2),(2,3)))
+    # arange(start,end,step)  创建数组 >=start开头 end< 结尾 step步长
+     	np.arange(1,10,2) =>1,3,5,7,9
+     	np.arange(1,2,0.2)=> 由于精度问题 不能发准确的预测元素数量 建议使用linspace
+    # linspace(start,end,num) 创建数组 >=start开头 end< 结尾 数据数量为num 默认为float64
+    	np.linspace(1,2,7)
+    
+    # eye(N, M=N, k=0, dtype=<class 'float'>, order='C') 创建一个对角线为1 其他元素为0的矩阵
+    # eye_like
+    	N 为 多少行 ，M (默认等于N)为多少列。
+         K 为对角线起始索引（第一行 第K个为对角线开始）
+         np.eye(5,5,k=0)
+            [[1 0 0 0 0]
+             [0 1 0 0 0]
+             [0 0 1 0 0]
+             [0 0 0 1 0]
+             [0 0 0 0 1]]
+          np.eye(5,5,k=1)
+           [[0 1(K) 0 0 0]
+             [0 0 1 0 0]
+             [0 0 0 1 0]
+             [0 0 0 0 1]
+             [0 0 0 0 0]]
     ```
-
+    
+    
+    
+    ```python
+    #随机数
+    
+    	
+    ```
+    
     ```python
     np.array([22,12],dtype=complex) 复数
     np.array([1.0,2.3.0],dtype=np.float64)
@@ -75,9 +117,9 @@
     19.	complex128 复数，由两个 64 位浮点表示（实部和虚部）
     
     ```
-
+    
     ```python
     
     ```
-
+    
     
