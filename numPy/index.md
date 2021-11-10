@@ -71,6 +71,8 @@
              [0 0 0 1 0]
              [0 0 0 0 1]
              [0 0 0 0 0]]
+    np.zeros
+    np.arange
     ```
     
     
@@ -82,6 +84,7 @@
     ```
     
     ```python
+    dtype:
     np.array([22,12],dtype=complex) 复数
     np.array([1.0,2.3.0],dtype=np.float64)
     # dtype
