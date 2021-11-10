@@ -10,5 +10,9 @@ import numpy as np
 # data = np.arange(10, 30, 5)
 # print(type(data))
 
-random =  np.random.ranf((2,3))
-print(random)
+random =  np.arange(24).reshape(2,3,4)
+print(random,)
+print('11111111111')
+print(random.max(axis=0))
+print(random.max(axis=1))
+print(random.max(axis=2))
