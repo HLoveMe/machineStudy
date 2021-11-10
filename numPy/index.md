@@ -51,6 +51,7 @@
     	np.asarray(((1,2),(2,3)))
     # arange(start,end,step)  创建数组 >=start开头 end< 结尾 step步长
      	np.arange(1,10,2) =>1,3,5,7,9
+        np.arange(10)=> [0,10)
      	np.arange(1,2,0.2)=> 由于精度问题 不能发准确的预测元素数量 建议使用linspace
     # linspace(start,end,num) 创建数组 >=start开头 end< 结尾 数据数量为num 默认为float64
     	np.linspace(1,2,7)
@@ -71,17 +72,13 @@
              [0 0 0 1 0]
              [0 0 0 0 1]
              [0 0 0 0 0]]
-    np.zeros
-    np.arange
+    # np.fromfunction(func,shape,dtype) 指定函数创建数组
+         def create(x,y):
+             return x * y
+         np.fromfunction(create,(3,3),dtype=np.float64)
     ```
     
     
-    
-    ```python
-    #随机数
-    
-    	
-    ```
     
     ```python
     dtype:
