@@ -23,6 +23,16 @@ import numpy as np
 
 
 # print(np.random.randint(0,100,(2,3,4)))
-print(np.arange(9).reshape(3,3).ravel() )
-print(np.ravel(np.arange(9).reshape(3,3)))
-np.ceil
+# print(np.arange(9).reshape(3,3).ravel() )
+# print(np.ravel(np.arange(9).reshape(3,3)))
+# np.ceil
+
+# a = np.array([1,2,3])
+# b= np.array([4,5,6])
+# print(np.vstack((a,b)))
+# print(np.hstack((a,b)))
+
+a = np.arange(24).reshape(2,3,4)
+b = np.arange(24).reshape(2,3,4)
+print(np.hstack((a,b)))
+print(a.shape,b.shape,np.hstack((a,b)).shape)
