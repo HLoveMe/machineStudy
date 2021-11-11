@@ -14,7 +14,7 @@
   # np.ravel 扁平化 = ndaray.ravel
   # 将不同数组堆叠在一起
   	# np.vstack(垂直的上下排列) np.hstack(水平的左右排列) np.dstack(垂直高低排列)
-      	# hstack 一维数组时 按照第一个轴进行堆叠。 其它数组堆叠时 数组堆叠都是按照第二个轴堆叠。
+      	# hstack 一维数组时 按照第一个轴进行堆叠。 其它数组堆叠时 数组堆叠都是按照第二个轴堆叠(第二轴可以长度不一致)
               a = np.array((1,2,3)) shape(3) 一维数组时
               b = np.array((2,3,4)) shape(3)
               np.hstack((a,b))=>array([1, 2, 3, 2, 3, 4])=>shape(6)
