@@ -10,7 +10,48 @@
   ```python
   # np.floor 所有元素向下取整
   # np.ceil
+  # np.flat 该数组一维化 
   # np.ravel 扁平化 = ndaray.ravel
+  # 将不同数组堆叠在一起
+  	# np.vstack(垂直的上下排列) np.hstack(水平的左右排列) np.dstack(垂直高低排列)
+      	# hstack 一维数组时 按照第一个轴进行堆叠。 其它数组堆叠时 数组堆叠都是按照第二个轴堆叠(第二轴可以长度不一致)
+              a = np.array((1,2,3)) shape(3) 一维数组时
+              b = np.array((2,3,4)) shape(3)
+              np.hstack((a,b))=>array([1, 2, 3, 2, 3, 4])=>shape(6)
+              
+              a = np.array([[1],[2],[3]]) shape(3,1) 它数组堆叠时 第二个轴堆叠。
+              b = np.array([[2],[3],[4]]) shape(3,1)
+              np.hstack((a,b))=>
+                  array([ [1, 2],
+                  		[2, 3],
+                  		[3, 4]])  =>shape(3,2)
+                  
+              np.hstack(shape(2, 3, 4),shape(2, 3, 4)) =>(2, 6, 4)
+                
+          # vstack 沿着第一个轴堆叠数组。 一维数组进行堆叠，则数组长度必须相同。其它数组堆叠时 第一个轴的长度可以不一样
+              a = np.array((1,2,3)) shape(3) 一维数组时 沿着第一个轴纵向堆叠数组
+              b = np.array((2,3,4)) shape(3)
+              np.vstack((a,b))   =>shape(2,3)
+              
+              a = np.array([[1],[2],[3]]) shape(3,1) 沿着第一个轴纵向堆叠数组
+              b = np.array([[2],[3],[4]]) shape(3,1)
+              np.vstack((a,b))
+              	[[1]
+                   [2]
+                   [3]
+                   [2]
+                   [3]
+                   [4]] shape(6, 1)
+              
+              np.hstack(shape(2, 3, 4),shape(2, 3, 4)) =>(4,3, 4) 沿着第一个轴纵向堆叠数组
+            
+          # dstack 对数组进行第三轴堆叠
+          	
+      # np.column_stack
+      # np.row_stack
+      
+      
+      
   ```
 
   
