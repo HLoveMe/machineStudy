@@ -32,7 +32,12 @@ import numpy as np
 # print(np.vstack((a,b)))
 # print(np.hstack((a,b)))
 
+# a = np.arange(24).reshape(2,3,4)
+# b = np.arange(24).reshape(2,3,4)
+# print(np.hstack((a,b)))
+# print(a.shape,b.shape,np.hstack((a,b)).shape)
+
 a = np.arange(24).reshape(2,3,4)
 b = np.arange(24).reshape(2,3,4)
-print(np.hstack((a,b)))
-print(a.shape,b.shape,np.hstack((a,b)).shape)
+print(a.shape,b.shape)
+print(np.vstack((a,b)),np.vstack((a,b)).shape)
