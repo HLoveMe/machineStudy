@@ -37,7 +37,24 @@ import numpy as np
 # print(np.hstack((a,b)))
 # print(a.shape,b.shape,np.hstack((a,b)).shape)
 
-a = np.arange(24).reshape(2,3,4)
-b = np.arange(24).reshape(2,3,4)
+# a = np.arange(24).reshape(2,3,4)
+# b = np.arange(24).reshape(2,3,4)
+# print(a.shape,b.shape)
+# print(np.vstack((a,b)),np.vstack((a,b)).shape)
+
+
+a = np.array([1,2,3])
+b= np.array([4,5,6])
 print(a.shape,b.shape)
-print(np.vstack((a,b)),np.vstack((a,b)).shape)
+result = np.dstack((a,b))
+print(result,result.shape)
+
+# a = np.array([[1,2],
+#               [3,4]])
+# b= np.array([[5,6],
+#               [7,8]])
+# c= np.array([[5,6],
+#               [7,8]])
+# print(a.shape,b.shape,c.shape)
+# result = np.dstack((a,b,c))
+# print(result,result.shape)

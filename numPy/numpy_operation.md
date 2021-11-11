@@ -19,7 +19,7 @@
               b = np.array((2,3,4)) shape(3)
               np.hstack((a,b))=>array([1, 2, 3, 2, 3, 4])=>shape(6)
               
-              a = np.array([[1],[2],[3]]) shape(3,1) 它数组堆叠时 二个轴堆叠。
+              a = np.array([[1],[2],[3]]) shape(3,1) 它数组堆叠时 第二个轴堆叠。
               b = np.array([[2],[3],[4]]) shape(3,1)
               np.hstack((a,b))=>
                   array([ [1, 2],
@@ -44,7 +44,9 @@
                    [4]] shape(6, 1)
               
               np.hstack(shape(2, 3, 4),shape(2, 3, 4)) =>(4,3, 4) 沿着第一个轴纵向堆叠数组
-              
+            
+          # dstack 对数组进行第三轴堆叠
+          	
       # np.column_stack
       # np.row_stack
       
