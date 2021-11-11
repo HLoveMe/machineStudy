@@ -30,7 +30,7 @@ import numpy as np
 # a = np.array([1,2,3])
 # b= np.array([4,5,6])
 # print(np.vstack((a,b)))
-# print(np.hstack((a,b)))
+
 
 # a = np.arange(24).reshape(2,3,4)
 # b = np.arange(24).reshape(2,3,4)
@@ -43,11 +43,6 @@ import numpy as np
 # print(np.vstack((a,b)),np.vstack((a,b)).shape)
 
 
-a = np.array([1,2,3])
-b= np.array([4,5,6])
-print(a.shape,b.shape)
-result = np.dstack((a,b))
-print(result,result.shape)
 
 # a = np.array([[1,2],
 #               [3,4]])
@@ -58,3 +53,24 @@ print(result,result.shape)
 # print(a.shape,b.shape,c.shape)
 # result = np.dstack((a,b,c))
 # print(result,result.shape)
+
+
+np.concatenate
+np.stack
+np.hstack
+np.row_stack
+np.column_stack
+np.concatenate
+# np.array().flatt
+
+# a = np.array([[1, 1,7],[1, 1,7]])
+# b = np.array([[1, 1,7],[1, 1,7]])
+# c = np.array([[1, 1,7],[1, 1,7]])
+# d = np.array([[1, 1,7],[1, 1,7]])
+# print(a.shape)
+# print(np.stack((a, b, c,d), axis=1).shape)
+
+# ar1 = np.array([[1,2,3], [4,5,6]]) # 2,3
+# ar2 = np.array([[7,8,9], [11,12,13]]) # 2,3
+
+# print(np.append(ar1,ar2,1))
