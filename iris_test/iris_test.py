@@ -1,9 +1,6 @@
-
-from math import e
 import numpy as np
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
-
 
 iris = datasets.load_iris()
 # 数据源处理
@@ -12,16 +9,15 @@ iris_data = np.hstack((iris.data, iris.target.reshape(-1, 1)))
 # 拆数据
 train, test = train_test_split(iris_data, test_size=0.2)
 
-# Knn 数据训练 使用distance 来作为数据分类依据
-# from sklearn.neighbors import KNeighborsClassifier
+
 '''
+# Knn 数据训练 邻近算法
 方式1：
-  1:计算预测数据到所有训练集数据的距离
+  1:计算[预测数据]到所有训练集数据的距离
   2:指定K值 取前K个距离最近的数据
-  3:评估最近的K个 计算概率 便可预测数据的类别
+  3:评估最近的K个 到各个预测结果的概率 。便可预测数据的类别
 '''
 K = 5
-
 
 def forecast_data(item):
     forecast = item[:-1]
@@ -58,5 +54,5 @@ if __name__ == '__main__':
             success += 1
         else:
             fail += 1
-
-    print('success:', success, 'fail:', fail)
+    print('样本总数:', len(iris.data),'训练样本：',len(train),'测试样本：',len(test))
+    print('success:', success, 'fail:', fail,'预测成功概率:',success/(success+fail))
