@@ -1,4 +1,4 @@
-# NumPy [DOC](https://www.numpy.org.cn/user/quickstart.html) [Dome](https://blog.csdn.net/a373595475/article/details/79580734)
+# NumPy [DOC](https://www.numpy.org.cn/user/quickstart.html) 
 
 * 数组的算数和逻辑运算。
 * 傅立叶变换和用于图形操作的例程。

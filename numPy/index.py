@@ -43,7 +43,6 @@ import numpy as np
 # print(np.vstack((a,b)),np.vstack((a,b)).shape)
 
 
-
 # a = np.array([[1,2],
 #               [3,4]])
 # b= np.array([[5,6],
@@ -54,14 +53,6 @@ import numpy as np
 # result = np.dstack((a,b,c))
 # print(result,result.shape)
 
-
-np.concatenate
-np.stack
-np.hstack
-np.row_stack
-np.column_stack
-np.concatenate
-# np.array().flatt
 
 # a = np.array([[1, 1,7],[1, 1,7]])
 # b = np.array([[1, 1,7],[1, 1,7]])
@@ -74,3 +65,21 @@ np.concatenate
 # ar2 = np.array([[7,8,9], [11,12,13]]) # 2,3
 
 # print(np.append(ar1,ar2,1))
+
+
+# a = np.arange(16).reshape(4,4)
+# print(a.shape)
+# sp1, sp2,sp3,sp4 = np.hsplit(a, 4)
+# print(sp1.shape, sp2.shape,sp3.shape,sp4.shape)
+
+
+# a = np.arange(16).reshape(4,4)
+# print(a.shape)
+# sp1, sp2,sp3,sp4 = np.vsplit(a, 4)
+# print(sp1.shape, sp2.shape,sp3.shape,sp4.shape)
+
+
+a = np.arange(24).reshape(2,3,4)
+print(a.shape)
+sp1, sp2,sp3,sp4 = np.dsplit(a, 4)
+print(sp1.shape, sp2.shape,sp3.shape,sp4.shape)

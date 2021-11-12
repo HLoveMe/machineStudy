@@ -86,8 +86,29 @@
               1: axis=None ravel扁平化,再拼接
               2：axis=0  沿第一个轴拼接 =>vstack
               3：axis=1  沿第二个轴拼接 =>hstack
-              4:axis=2  沿第三个轴拼接 =>dstack
+              4: axis=2  沿第三个轴拼接 =>dstack
       	# numpy.concatenate()~=appand() 更高效 更适合多数组拼接
+          
+     # 切割 把大数组切割为多个小数组
+  		# hsplit 沿着第二轴切割 维度不变 (ary, indices_or_sections)
+              np.hsplit(shape(4,4),2) => shape(4,2)+shape(4,2)
+              np.hsplit(shape(4,4),4) => shape(4,1)+shape(4,1)+shape(4,1)+shape(4,1)
+              np.hsplit(shape(4,8),(m,n)) 沿着第二轴拆分为 [0.m), [m n),[n,-0) 三个数组
+              np.hsplit(shape(4,8),(m,n,k)) 沿着第二轴拆分为 [0.m), [m n),[n,k) [k,-0) 四个数组
+           # vsplit 沿着第一轴切割 (ary, indices_or_sections)
+              np.vsplit(shape(4,4),2) => shape(2,4)+shape(2,4)
+              np.vsplit(shape(4,4),4) => shape(1,4)+shape(1,4)+shape(1,4)+shape(1,4)
+              np.vsplit(shape(4,8),(m,n)) 沿着第一轴拆分为 [0.m), [m n),[n,-0) 三个数组
+              np.vsplit(shape(4,8),(m,n,k)) 沿着第一轴拆分为 [0.m), [m n),[n,k) [k,-0) 四个数组
+           # dsplit 第三轴切割   (ary, indices_or_sections)
+              np.dsplit(shape(2,3,4)) => (2,3,1) + (2,3,1) + (2,3,1) + (2,3,1)
+              np.dsplit(shape(4,8，10),(m,n)) 沿着第三轴拆分为 [0.m), [m n),[n,-0) 三个数组
+              np.dsplit(shape(4,8，10),(m,n,k)) 沿着第三轴拆分为 [0.m), [m n),[n,k) [k,-0) 四个数组                                                  
+           # split  array_split(等于split 区别在于可以拆为多个长度不同的数组 (8->3)=>(3,2,2))
+              split(ary, indices_or_sections, axis=0)
+              hsplit ==  split(axis=1)
+              vsplit ==  split(axis=0)
+              dsplit ==  split(axis=2)
   ```
 
   
@@ -129,5 +150,63 @@
     	pass
     ```
 
-    
+*  对照表 [Link]
+
+|           函数           | 说明                                                         |
+| :----------------------: | ------------------------------------------------------------ |
+|       numpy.copyto       |                                                              |
+|       numpy.shape        | 得到shape                                                    |
+|      numpy.reshape       | 重置shape                                                    |
+|       numpy.ravel        | 扁平化 为一维数组 试图                                       |
+|    numpy.ndarray.flat    | 得到该数组的一维对象 试图                                    |
+|  numpy.ndarray.flatten   | 数组一维化为 拷贝                                            |
+|      numpy.moveaxis      |                                                              |
+|      numpy.rollaxis      |                                                              |
+|      numpy.swapaxes      |                                                              |
+|     numpy.ndarray.T      |                                                              |
+|     numpy.transpose      |                                                              |
+|    "numpy.atleast_1d     |                                                              |
+|    "numpy.atleast_2d     |                                                              |
+|    "numpy.atleast_3d     |                                                              |
+|     "numpy.broadcast     |                                                              |
+|   "numpy.broadcast_to    |                                                              |
+|  numpy.broadcast_arrays  |                                                              |
+|    numpy.expand_dims     |                                                              |
+|      "numpy.squeeze      |                                                              |
+|      "numpy.asarray      |                                                              |
+|    "numpy.asanyarray     |                                                              |
+|     "numpy.asmatrix      |                                                              |
+|     "numpy.asfarray      |                                                              |
+|  "numpy.asfortranarray   |                                                              |
+| "numpy.ascontiguousarray |                                                              |
+| "numpy.asarray_chkfinite |                                                              |
+|     "numpy.asscalar      |                                                              |
+|      "numpy.require      |                                                              |
+|    "numpy.concatenate    |                                                              |
+|       "numpy.stack       | 堆叠(合并)数组                                               |
+|       "numpy.block       |                                                              |
+|      "numpy.vstack       | 堆叠(合并)数组 第一轴堆叠                                    |
+|      "numpy.hstack       | 堆叠(合并)数组 第二轴堆叠                                    |
+|      "numpy.dstack       | 堆叠(合并)数组 第三轴堆叠                                    |
+|   "numpy.column_stack    | ~==hstack                                                    |
+|     "numpy.row_stack     | === vstack                                                   |
+|       "numpy.split       | 拆分为小数组                                                 |
+|    "numpy.array_split    | 等于split 区别在于可以拆为多个长度不同的数组 (8->3)=>(3,2,2) |
+|      "numpy.dsplit       | 第三轴切割                                                   |
+|      "numpy.hsplit       | 第二轴切割                                                   |
+|      "numpy.vsplit       | 第一轴切割                                                   |
+|       "numpy.tile        |                                                              |
+|      "numpy.repeat       |                                                              |
+|      "numpy.delete       |                                                              |
+|      "numpy.insert       |                                                              |
+|      "numpy.append       | 拼接 堆叠数组                                                |
+|      "numpy.resize       |                                                              |
+|    "numpy.trim_zeros     |                                                              |
+|      "numpy.unique       |                                                              |
+|       "numpy.flip        |                                                              |
+|      "numpy.fliplr       |                                                              |
+|      "numpy.flipud       |                                                              |
+|      "numpy.reshape      |                                                              |
+|       "numpy.roll        |                                                              |
+|       "numpy.rot90       |                                                              |
 
