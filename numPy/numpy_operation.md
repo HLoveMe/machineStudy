@@ -109,6 +109,24 @@
               hsplit ==  split(axis=1)
               vsplit ==  split(axis=0)
               dsplit ==  split(axis=2)
+                                                                            
+    # 插入insert
+        numpy.insert(arr, obj, values, axis=None)
+            arr:源数据
+            obj:索引 或 索引集合  1,[1,3],(1,3) 第一个and三个索引
+            value：值
+            axis： None 全部一维化 在插入。或0,1,2
+        # axis=  None 全部扁平化 在插入
+        # axis = 0
+          shape(4,5) => shape(A,B) axis=0 则数据必须为5(B)列                                                                  
+          np.insert(shape(4,5),1|[1]|(1),value,0)
+          1|[1]|(1) => 插入一个位置 value为 (?,B) 或者转为(?,B)的数据 。如 value=9 ,value=shape(3,B)
+         	[0,3]|(0,1)=>插入2(C)个位置 value为(C,B) 或可转为(C,B)的数据。 如 value 10,value=shape(2,B) ,shape(1,B)
+        # axis = 1
+           shape(4,5) => shape(A,B) axis=1 则数据必须为4(A)行
+           np.insert(shape(4,5),1|[1]|(1),value,1)   
+           1|[1]|(1) => 插入一个位置 value为 (A,?) 或者转为(A,?)的数据 。如 value=9 ,value=shape(A,4)
+           [0,1,3]|(0,1,2) => 插入3(C)个位置 value为(A,C) 或可转为(A,C)的数据。 如 value= 10 ,shape(A,1)
   ```
 
   
