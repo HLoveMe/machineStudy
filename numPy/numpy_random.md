@@ -33,6 +33,14 @@ np.random 随机数对象
  # random ranf sample =>  random_sample 在[0,1）内产生随机数
      np.random_sample(1)  [0.37035029]     
      np.random_sample(2,3)
+ 
+ # random.normal(loc=0.0, scale=1.0, size=None) 返回一个服从高斯随机分布是随机数
+     loc 中心行坐标
+     scale 概率分布的标准差
+     size
+     (0,1)标准正态分布
+     normal(0,1)=> 返回一个值
+     normal(0,1,(3,3))                                
 ```
 
 
