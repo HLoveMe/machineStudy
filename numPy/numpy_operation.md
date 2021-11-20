@@ -204,28 +204,32 @@
 
     ```python
     import numpy as np
-    #切片 [:::]
     dome_data =  np.arange(0,24,1).reshape(4,6)
     [[ 0  1  2  3  4  5]
      [ 6  7  8  9 10 11]
      [12 13 14 15 16 17]
      [18 19 20 21 22 23]]
+    #切片 [:::]
     dome_data[2,3] =>15
     dome_date[1]
     =>dome_data[1,:]
     =>dome_data[1,...] = > [ 6  7  8  9 10 11]
     
-    dome_data  = np.arange(0,24,1).shape(2,3,4)
     dome_date[1:] ==dome_data[1::] == dome_data[1::1] 沿着第一轴 从第一个开始取 到最后一个 步长为1
     dome_data[0:2,1:3] =第一步[0:2]=>[[0  1  2  3  4  5],[6  7  8  9 10 11]]=第二步[1:2]=>[[1,2], [7,8]]
     
-    #索引 [1,[1,2]]
-        dome_data[1] === dome_data[[1]]
-        dome_data[:,1] === dome_data[:,[1]]
+    #索引 [[2,3],[1,2]]
+        dome_data[:,1] == dome_data[:,1:] != dome_data[:,[1]]
         索引列:
-            dome_data[:2,1:3] ==>[[1,2], [7,8]]
-          ?  dome_data[[0,1],1:3] ==>[[1,2], [7,8]]
-          ?  dome_data[0:2,[1,3]]===> 返回的是行向量 [1,9]
+           dome_data[:2,1:3] ==>[[1,2], [7,8]]
+           dome_data[[0,1],[1,3]]
+        	==>[(0行1列),(1行,3列)]
+            ==>[1,9]
+    # 索引+切片
+    	dome_data[[0,1],1:3] 不触发广播
+        
+    	dome_data[0:2,[1,3]] 触发广播
+       
     # np.newaxis = None
     ```
 
