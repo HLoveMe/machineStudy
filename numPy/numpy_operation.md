@@ -225,12 +225,14 @@
            dome_data[[0,1],[1,3]]
         	==>[(0行1列),(1行,3列)]
             ==>[1,9]
+           类似 === dome_data[[0,1],[[1],[3]]]
     # 索引+切片
     	dome_data[[0,1],1:3] 不触发广播
-        
     	dome_data[0:2,[1,3]] 触发广播
-       
-    # np.newaxis = None
+       	==>dome_data[0:2,[[1,3],[1,3]]
+    # np.newaxis = None 在指定位置增加一维
+        dome_data[None] =>shape(4,6)===>shape(1,4,6)
+        dome_data[:,None]=>shape(4,6)===>shape(4,1,6)
     ```
 
   * 对多维数组进行 **迭代（Iterating）** 是相对于第一个轴完成的。使用flat属性对所有属性迭代
@@ -255,8 +257,8 @@
 |      numpy.moveaxis      |                                                              |
 |      numpy.rollaxis      |                                                              |
 |      numpy.swapaxes      |                                                              |
-|     numpy.ndarray.T      |                                                              |
-|     numpy.transpose      |                                                              |
+|     numpy.ndarray.T      | 获取该数组的转置                                             |
+|     numpy.transpose      | 获取该数组的转置                                             |
 |    "numpy.atleast_1d     |                                                              |
 |    "numpy.atleast_2d     |                                                              |
 |    "numpy.atleast_3d     |                                                              |
