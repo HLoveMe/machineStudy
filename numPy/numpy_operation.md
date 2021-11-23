@@ -152,6 +152,10 @@
     
 
   * np.dot 矩阵点积
+    $$
+    P= \begin{bmatrix} a & b \\ c & d \end{bmatrix} * \begin{bmatrix} e & f \\ h & g \end{bmatrix} = XY =np.dot(X,Y)
+    $$
+    
 
     ```python
     结果:C(i,j)等于A中第i行所有元素跟B中第j列所有元素一一对应的乘积之和
@@ -166,6 +170,10 @@
     
 
   * 转置 np.transponse np.dnarray.T
+    $$
+    P = X^T=np.dot(X)
+    $$
+    
 
     ```python
     # np.dnarray.T  把数组进行转置
