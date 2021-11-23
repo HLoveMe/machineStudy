@@ -8,156 +8,192 @@
   
 * 通函数 
 
-  *  堆叠思路 [Go](https://blog.csdn.net/Riverhope/article/details/78922006)
+  * 堆叠思路 [Go](https://blog.csdn.net/Riverhope/article/details/78922006)
 
-  ```python
-  # np.floor 所有元素向下取整
-  # np.ceil
-  # ndarray.flat 属性 一维化 
-  # ndarray.flatten() => 数组一维化为 拷贝
-  # np.ravel 扁平化 = ndaray.ravel 为一维数组 试图
-  # 将不同数组堆叠在一起  
-          concatenate	提供了axis参数，用于指定拼接方向
-          append	默认先ravel再拼接成一维数组，也可指定axis
-          stack	提供了axis参数，用于生成新的维度
-          hstack	水平拼接，沿着行的方向，对列进行拼接
-          vstack	垂直拼接，沿着列的方向，对行进行拼接
-          dstack	沿着第三个轴（深度方向）进行拼接
-          column_stack	水平拼接，沿着行的方向，对列进行拼接
-          row_stack	垂直拼接，沿着列的方向，对行进行拼接
-          r_	垂直拼接，沿着列的方向，对行进行拼接
-          c_	水平拼接，沿着行的方向，对列进行拼接
-      # stack  会增加一个维度 
-      	np.stack((a, b, c), axis=0)
-          	shape(3,) + shape(3,) + shape(3,)=>shape(3(0=>3个),3,)
-           np.stack((a, b, c), axis=1)
-              shape(3,) + shape(3,) + shape(3,)=>shape(3,3(1=>3个),)
-           np.stack((a, b, c,d), axis=2)
-              shape(3,2) + shape(3,2)+ shape(3,2) + shape(3,2)=>(3,2,4(2=>4个))
-           np.stack((a, b, c,d), axis=?)
-            axis=0  shape(3,2) + shape(3,2)+ shape(3,2) + shape(3,2)=>shape(4(0=>4个),2,3)
-            axis=1  shape(3,2) + shape(3,2)+ shape(3,2) + shape(3,2)=>shape(2,4(1=>4个),3)
-            axis=2  shape(3,2) + shape(3,2)+ shape(3,2) + shape(3,2)=>shape(3,2,4(2=>4个))
-      #  保持相同维度 np.vstack np.hstack np.dstack
-      # np.c_ === np.hstack  numpy.r_====p.vstack
-      	np.c_[[],[]] == np.hstack([],[])
-      	
-      # np.vstack(垂直的上下排列 y) np.hstack(水平的左右排列 x) np.dstack(垂直高低排列 z) 
-      	# hstack 一维数组时 按照第一个轴进行堆叠。 其它数组堆叠时 数组堆叠都是按照第二个轴堆叠(第二轴可以长度不一致)
-              a = np.array((1,2,3)) shape(3) 一维数组时
-              b = np.array((2,3,4)) shape(3)
-              np.hstack((a,b))=>array([1, 2, 3, 2, 3, 4])=>shape(6)
-              
-              a = np.array([[1],[2],[3]]) shape(3,1) 它数组堆叠时 第二个轴堆叠。
-              b = np.array([[2],[3],[4]]) shape(3,1)
-              np.hstack((a,b))=>
-                  array([ [1, 2],
-                  		[2, 3],
-                  		[3, 4]])  =>shape(3,2)
-                  
-              np.hstack(shape(2, 3, 4),shape(2, 3, 4)) =>(2, 6, 4)
-                
-          # vstack 沿着第一个轴堆叠数组。 一维数组进行堆叠，则数组长度必须相同。其它数组堆叠时 第一个轴的长度可以不一样
-              a = np.array((1,2,3)) shape(3) 一维数组时 沿着第一个轴纵向堆叠数组
-              b = np.array((2,3,4)) shape(3)
-              np.vstack((a,b))   =>shape(2,3)
-              
-              a = np.array([[1],[2],[3]]) shape(3,1) 沿着第一个轴纵向堆叠数组
-              b = np.array([[2],[3],[4]]) shape(3,1)
-              np.vstack((a,b))
-              	[[1]
-                   [2]
-                   [3]
-                   [2]
-                   [3]
-                   [4]] shape(6, 1)
-              
-              np.hstack(shape(2, 3, 4),shape(2, 3, 4)) =>(4,3, 4) 沿着第一个轴纵向堆叠数组
-            
-          # dstack 对数组进行第三轴堆叠 结果维度至少为3
-              当数组为（M,N）转为(M,N,1) 第三轴堆叠
-              当数组为(M,) 转为 (1,M,1)  第三轴堆叠
-              a = np.array((1,2,3)) =>shape(1,3,1)
-              b = np.array((2,3,4)) =>shape(1,3,1)
-              np.dstack((a,b)) => shape(1,3,2)
-              
-              
-          # np.column_stack ~~== hstack ?
-          # np.row_stack === vstack
-      
-      	# appand(arr,value,axis=None)
-              1: axis=None ravel扁平化,再拼接
-              2：axis=0  沿第一个轴拼接 =>vstack
-              3：axis=1  沿第二个轴拼接 =>hstack
-              4: axis=2  沿第三个轴拼接 =>dstack
-      	# numpy.concatenate()~=appand() 更高效 更适合多数组拼接
-          
-     # 切割 把大数组切割为多个小数组
-  		# hsplit 沿着第二轴切割 维度不变 (ary, indices_or_sections)
-              np.hsplit(shape(4,4),2) => shape(4,2)+shape(4,2)
-              np.hsplit(shape(4,4),4) => shape(4,1)+shape(4,1)+shape(4,1)+shape(4,1)
-              np.hsplit(shape(4,8),(m,n)) 沿着第二轴拆分为 [0.m), [m n),[n,-0) 三个数组
-              np.hsplit(shape(4,8),(m,n,k)) 沿着第二轴拆分为 [0.m), [m n),[n,k) [k,-0) 四个数组
-           # vsplit 沿着第一轴切割 (ary, indices_or_sections)
-              np.vsplit(shape(4,4),2) => shape(2,4)+shape(2,4)
-              np.vsplit(shape(4,4),4) => shape(1,4)+shape(1,4)+shape(1,4)+shape(1,4)
-              np.vsplit(shape(4,8),(m,n)) 沿着第一轴拆分为 [0.m), [m n),[n,-0) 三个数组
-              np.vsplit(shape(4,8),(m,n,k)) 沿着第一轴拆分为 [0.m), [m n),[n,k) [k,-0) 四个数组
-           # dsplit 第三轴切割   (ary, indices_or_sections)
-              np.dsplit(shape(2,3,4)) => (2,3,1) + (2,3,1) + (2,3,1) + (2,3,1)
-              np.dsplit(shape(4,8，10),(m,n)) 沿着第三轴拆分为 [0.m), [m n),[n,-0) 三个数组
-              np.dsplit(shape(4,8，10),(m,n,k)) 沿着第三轴拆分为 [0.m), [m n),[n,k) [k,-0) 四个数组                                                  
-           # split  array_split(等于split 区别在于可以拆为多个长度不同的数组 (8->3)=>(3,2,2))
-              split(ary, indices_or_sections, axis=0)
-              hsplit ==  split(axis=1)
-              vsplit ==  split(axis=0)
-              dsplit ==  split(axis=2)
-                                                                            
-    # 插入insert
-        numpy.insert(arr, obj, values, axis=None)
-            arr:源数据
-            obj:索引 或 索引集合  1,[1,3],(1,3) 第一个and三个索引
-            value：值
-            axis： None 全部一维化 在插入。或0,1,2
-        # axis=  None 全部扁平化 在插入
-        # axis = 0
-          shape(4,5) => shape(A,B) axis=0 则数据必须为5(B)列                                                                  
-          np.insert(shape(4,5),1|[1]|(1),value,0)
-          1|[1]|(1) => 插入一个位置 value为 (?,B) 或者转为(?,B)的数据 。如 value=9 ,value=shape(3,B)
-         	[0,3]|(0,1)=>插入2(C)个位置 value为(C,B) 或可转为(C,B)的数据。 如 value 10,value=shape(2,B) ,shape(1,B)
-        # axis = 1
-           shape(4,5) => shape(A,B) axis=1 则数据必须为4(A)行
-           np.insert(shape(4,5),1|[1]|(1),value,1)   
-           1|[1]|(1) => 插入一个位置 value为 (A,?) 或者转为(A,?)的数据 。如 value=9 ,value=shape(A,4)
-           [0,1,3]|(0,1,2) => 插入3(C)个位置 value为(A,C) 或可转为(A,C)的数据。 如 value= 10 ,shape(A,1)
-                                                                            
-     # np.dot 计算两个数组的点积 
-         结果:C(i,j)等于A中第i行所有元素跟B中第j列所有元素一一对应的乘积之和
-         np.dot([0,1],[1,2]) 一维数组为内积 对应相乘相加
-         np.dot([[0,1],[2,3]],[[3,4],[4,5]])多维数组为矩阵积                                                 
-             =>shape(2,2)
-               [[ 4  5] [18 23]] 
-               (0,0)=>第一个数组0行(0,1) 第二个数组0列[3，4] =>0*3 + 1*4 = 4
-  			(1,1)=>第一个数组1行(2，3) 第二个数组1列列[4，5] =>2*4+3*5 = 23
-      # np.dnarray.T  把数组进行转置
-          shape(2,10).T = > shape(10,2)
-              [
-                  [0,1],
-                  [2,3]
-              ].T      
-              [
-                  [0,2],
-                  [1,3]
-              ]                                                                 
-          不同于                                                                  
-          shape(2,10).reshape(10,2).reshape(4,5) 会把数组一维化再进行求取
-      # np.mean(shape(m,n),axis=None,) 求平均值
-          axis=None 求所有平均值 返回一个值                                                                 axis = 0 沿着第一轴求平均值 求各列的平均值 shape(1,n)
-          axis = 1 沿着第二轴求平均值 求各行的平均值 shape(m,1)                                                                  
-                                                                            
-  ```
+  * np.floor 所有元素向下取整 
+
+  * np.ceil
+
+  * ndarray.flat 属性 一维化 
+
+  * ndarray.flatten() => 数组一维化为 拷贝
+
+  * np.ravel 扁平化 = ndaray.ravel 为一维数组 试图
+
+  * 切割
+
+    ```python
+    # 切割 把大数组切割为多个小数组
+    # hsplit 沿着第二轴切割 维度不变 (ary, indices_or_sections)
+        np.hsplit(shape(4,4),2) => shape(4,2)+shape(4,2)
+        np.hsplit(shape(4,4),4) => shape(4,1)+shape(4,1)+shape(4,1)+shape(4,1)
+        np.hsplit(shape(4,8),(m,n)) 沿着第二轴拆分为 [0.m), [m n),[n,-0) 三个数组
+        np.hsplit(shape(4,8),(m,n,k)) 沿着第二轴拆分为 [0.m), [m n),[n,k) [k,-0) 四个数组
+     # vsplit 沿着第一轴切割 (ary, indices_or_sections)
+        np.vsplit(shape(4,4),2) => shape(2,4)+shape(2,4)
+        np.vsplit(shape(4,4),4) => shape(1,4)+shape(1,4)+shape(1,4)+shape(1,4)
+        np.vsplit(shape(4,8),(m,n)) 沿着第一轴拆分为 [0.m), [m n),[n,-0) 三个数组
+        np.vsplit(shape(4,8),(m,n,k)) 沿着第一轴拆分为 [0.m), [m n),[n,k) [k,-0) 四个数组
+     # dsplit 第三轴切割   (ary, indices_or_sections)
+        np.dsplit(shape(2,3,4)) => (2,3,1) + (2,3,1) + (2,3,1) + (2,3,1)
+        np.dsplit(shape(4,8，10),(m,n)) 沿着第三轴拆分为 [0.m), [m n),[n,-0) 三个数组
+        np.dsplit(shape(4,8，10),(m,n,k)) 沿着第三轴拆分为 [0.m), [m n),[n,k) [k,-0) 四个数组                                                  
+     # split  array_split(等于split 区别在于可以拆为多个长度不同的数组 (8->3)=>(3,2,2))
+        split(ary, indices_or_sections, axis=0)
+        hsplit ==  split(axis=1)
+        vsplit ==  split(axis=0)
+        dsplit ==  split(axis=2)
+    ```
+
+    
+
+  * 堆叠
+
+    ```python
+    # concatenate	提供了axis参数，用于指定拼接方向
+        append	默认先ravel再拼接成一维数组，也可指定axis
+        stack	提供了axis参数，用于生成新的维度
+        hstack	水平拼接，沿着行的方向，对列进行拼接
+        vstack	垂直拼接，沿着列的方向，对行进行拼接
+        dstack	沿着第三个轴（深度方向）进行拼接
+        column_stack	水平拼接，沿着行的方向，对列进行拼接
+        row_stack	垂直拼接，沿着列的方向，对行进行拼接
+        r_	垂直拼接，沿着列的方向，对行进行拼接
+        c_	水平拼接，沿着行的方向，对列进行拼接
+    # stack  会增加一个维度 
+        np.stack((a, b, c), axis=0)
+            shape(3,) + shape(3,) + shape(3,)=>shape(3(0=>3个),3,)
+         np.stack((a, b, c), axis=1)
+            shape(3,) + shape(3,) + shape(3,)=>shape(3,3(1=>3个),)
+         np.stack((a, b, c,d), axis=2)
+            shape(3,2) + shape(3,2)+ shape(3,2) + shape(3,2)=>(3,2,4(2=>4个))
+         np.stack((a, b, c,d), axis=?)
+          axis=0  shape(3,2) + shape(3,2)+ shape(3,2) + shape(3,2)=>shape(4(0=>4个),2,3)
+          axis=1  shape(3,2) + shape(3,2)+ shape(3,2) + shape(3,2)=>shape(2,4(1=>4个),3)
+          axis=2  shape(3,2) + shape(3,2)+ shape(3,2) + shape(3,2)=>shape(3,2,4(2=>4个))
+    #  保持相同维度 np.vstack np.hstack np.dstack
+    # np.c_ === np.hstack  numpy.r_====p.vstack
+        np.c_[[],[]] == np.hstack([],[])
+    
+    # np.vstack(垂直的上下排列 y) np.hstack(水平的左右排列 x) np.dstack(垂直高低排列 z) 
+        # hstack 一维数组时 按照第一个轴进行堆叠。 其它数组堆叠时 数组堆叠都是按照第二个轴堆叠(第二轴可以长度不一致)
+            a = np.array((1,2,3)) shape(3) 一维数组时
+            b = np.array((2,3,4)) shape(3)
+            np.hstack((a,b))=>array([1, 2, 3, 2, 3, 4])=>shape(6)
+    
+            a = np.array([[1],[2],[3]]) shape(3,1) 它数组堆叠时 第二个轴堆叠。
+            b = np.array([[2],[3],[4]]) shape(3,1)
+            np.hstack((a,b))=>
+                array([ [1, 2],
+                        [2, 3],
+                        [3, 4]])  =>shape(3,2)
+    
+            np.hstack(shape(2, 3, 4),shape(2, 3, 4)) =>(2, 6, 4)
+    
+        # vstack 沿着第一个轴堆叠数组。 一维数组进行堆叠，则数组长度必须相同。其它数组堆叠时 第一个轴的长度可以不一样
+            a = np.array((1,2,3)) shape(3) 一维数组时 沿着第一个轴纵向堆叠数组
+            b = np.array((2,3,4)) shape(3)
+            np.vstack((a,b))   =>shape(2,3)
+    
+            a = np.array([[1],[2],[3]]) shape(3,1) 沿着第一个轴纵向堆叠数组
+            b = np.array([[2],[3],[4]]) shape(3,1)
+            np.vstack((a,b))
+                [[1]
+                 [2]
+                 [3]
+                 [2]
+                 [3]
+                 [4]] shape(6, 1)
+    
+            np.hstack(shape(2, 3, 4),shape(2, 3, 4)) =>(4,3, 4) 沿着第一个轴纵向堆叠数组
+    
+        # dstack 对数组进行第三轴堆叠 结果维度至少为3
+            当数组为（M,N）转为(M,N,1) 第三轴堆叠
+            当数组为(M,) 转为 (1,M,1)  第三轴堆叠
+            a = np.array((1,2,3)) =>shape(1,3,1)
+            b = np.array((2,3,4)) =>shape(1,3,1)
+            np.dstack((a,b)) => shape(1,3,2)
+    
+    
+        # np.column_stack ~~== hstack ?
+        # np.row_stack === vstack
+        # appand(arr,value,axis=None)
+            1: axis=None ravel扁平化,再拼接
+            2：axis=0  沿第一个轴拼接 =>vstack
+            3：axis=1  沿第二个轴拼接 =>hstack
+            4: axis=2  沿第三个轴拼接 =>dstack
+        # numpy.concatenate()~=appand() 更高效 更适合多数组拼接
+    ```
 
   
+
+  * 插入 insert
+
+    ```python
+    # 插入insert
+      numpy.insert(arr, obj, values, axis=None)
+          arr:源数据
+          obj:索引 或 索引集合  1,[1,3],(1,3) 第一个and三个索引
+          value：值
+          axis： None 全部一维化 在插入。或0,1,2
+      # axis=  None 全部扁平化 在插入
+      # axis = 0
+        shape(4,5) => shape(A,B) axis=0 则数据必须为5(B)列                                                                  
+        np.insert(shape(4,5),1|[1]|(1),value,0)
+        1|[1]|(1) => 插入一个位置 value为 (?,B) 或者转为(?,B)的数据 。如 value=9 ,value=shape(3,B)
+        [0,3]|(0,1)=>插入2(C)个位置 value为(C,B) 或可转为(C,B)的数据。 如 value 10,value=shape(2,B) ,shape(1,B)
+      # axis = 1
+         shape(4,5) => shape(A,B) axis=1 则数据必须为4(A)行
+         np.insert(shape(4,5),1|[1]|(1),value,1)   
+         1|[1]|(1) => 插入一个位置 value为 (A,?) 或者转为(A,?)的数据 。如 value=9 ,value=shape(A,4)
+         [0,1,3]|(0,1,2) => 插入3(C)个位置 value为(A,C) 或可转为(A,C)的数据。 如 value= 10 ,shape(A,1)
+    ```
+
+    
+
+  * np.dot 矩阵点积
+
+    ```python
+    结果:C(i,j)等于A中第i行所有元素跟B中第j列所有元素一一对应的乘积之和
+           np.dot([0,1],[1,2]) 一维数组为内积 对应相乘相加
+           np.dot([[0,1],[2,3]],[[3,4],[4,5]])多维数组为矩阵积                                                 
+               =>shape(2,2)
+                 [[ 4  5] [18 23]] 
+                 (0,0)=>第一个数组0行(0,1) 第二个数组0列[3，4] =>0*3 + 1*4 = 4
+    			(1,1)=>第一个数组1行(2，3) 第二个数组1列列[4，5] =>2*4+3*5 = 23
+    ```
+
+    
+
+  * 转置 np.transponse np.dnarray.T
+
+    ```python
+    # np.dnarray.T  把数组进行转置
+    shape(2,10).T = > shape(10,2)
+        [
+            [0,1],
+            [2,3]
+        ].T      
+        [
+            [0,2],
+            [1,3]
+        ]                                                                 
+    不同于                                                                  
+    shape(2,10).reshape(10,2).reshape(4,5) 会把数组一维化再进行求取
+    ```
+
+    
+
+  * 平均值
+
+    ```python
+    # np.mean(shape(m,n),axis=None,) 求平均值
+            axis=None 求所有平均值 返回一个值                                                                 
+            axis = 0 沿着第一轴求平均值 求各列的平均值 shape(1,n)
+            axis = 1 沿着第二轴求平均值 求各行的平均值 shape(m,1)  
+    ```
+
+    
 
 * 切片
 
